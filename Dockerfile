@@ -1,15 +1,21 @@
+# pull python base image
 FROM python:3.12
 
-ENV PYTHONUNBUFFERED=1
+# set working directory
+WORKDIR /app/
 
-WORKDIR /app
+# copy the requirements.txt file
+COPY requirements.txt .
 
-COPY requirements.txt /app/
-RUN pip install gunicorn
-RUN pip install setuptools
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+# install the dependencies
+RUN pip install -r requirements.txt
 
-COPY nginx/nginx.conf /etc/nginx/conf.d/
+# copy the application files
+COPY . .
 
-COPY . /app/
+# make entrypoint.sh executable
+RUN chmod +x entrypoint.sh
+
+# run entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
+
