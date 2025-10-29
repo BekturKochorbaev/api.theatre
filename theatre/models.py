@@ -26,6 +26,9 @@ class Event(models.Model):
         verbose_name = "Афиша"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.title
+
 
 class EventDate(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_date')
