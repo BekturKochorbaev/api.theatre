@@ -15,6 +15,7 @@ COPY . .
 
 # make entrypoint.sh executable
 RUN chmod +x entrypoint.sh
+RUN chmod +x manage.py
 
 # run entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
