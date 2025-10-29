@@ -1,7 +1,8 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin, TranslationTabularInline
 
-from .models import *
+from .models import EventCategory, EventDate, Event, Play, TheatreDescription, TheatreImage, AboutTheatre, TeamCategory, \
+    Team, GalleryCategory, Gallery, Repertoire, Contact
 from .translation import MediaAdminMixin
 from adminsortable2.admin import SortableAdminMixin
 
