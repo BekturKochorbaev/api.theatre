@@ -121,10 +121,18 @@ class GalleryCategory(models.Model):
 
 class Gallery(models.Model):
     category = models.ForeignKey(GalleryCategory, on_delete=models.CASCADE, verbose_name='Категория ')
-    image = models.FileField(upload_to='gallery_images/', null=True, blank=True, verbose_name='Фото')
 
     class Meta:
         verbose_name = "Галерея"
+        verbose_name_plural = verbose_name
+
+
+class GalleryImage(models.Model):
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, related_name='gallery_image')
+    image = models.FileField(upload_to='gallery_images/', null=True, blank=True, verbose_name='Фото')
+
+    class Meta:
+        verbose_name = "Фото"
         verbose_name_plural = verbose_name
 
 

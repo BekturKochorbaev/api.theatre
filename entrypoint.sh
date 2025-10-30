@@ -2,7 +2,7 @@
 
 # Выполняем миграции Django
 python manage.py makemigrations theatre tickets --noinput
-python manage.py migrate theatre tickets --noinput
+python manage.py migrate --noinput
 
 # Собираем статические файлы
 python manage.py collectstatic --noinput --clear

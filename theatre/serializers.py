@@ -4,7 +4,7 @@ from .models import (
     Play, AboutTheatre, TheatreDescription, TheatreImage,
     TeamCategory, Team,
     GalleryCategory, Gallery,
-    Repertoire, Contact
+    Repertoire, Contact, GalleryImage
 )
 
 
@@ -107,12 +107,19 @@ class GalleryCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class GalleryImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GalleryImage
+        fields = ['id', 'image']
+
+
 class GallerySerializer(serializers.ModelSerializer):
     category = GalleryCategorySerializer(read_only=True)
+    gallery_image = GalleryImageSerializer(read_only=True, many=True)
 
     class Meta:
         model = Gallery
-        fields = ['id', 'category', 'image']
+        fields = ['id', 'category', 'gallery_image']
 
 
 # ---------- REPERTOIRE SERIALIZER ----------
