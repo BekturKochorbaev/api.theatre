@@ -120,7 +120,7 @@ class GallerySerializer(serializers.ModelSerializer):
 class RepertoireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Repertoire
-        fields = ['id', 'title', 'genre', 'date', 'time', 'age_control', 'price']
+        fields = ['id', 'title', 'genre', 'date', 'time', 'image', 'age_control', 'price']
 
 
 # ---------- CONTACT SERIALIZER ----------

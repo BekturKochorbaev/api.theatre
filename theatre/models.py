@@ -133,6 +133,7 @@ class Repertoire(models.Model):
     genre = models.CharField(max_length=250, verbose_name='Жанр')
     date = models.DateField(verbose_name='Дата')
     time = models.TimeField(verbose_name='Время')
+    image = models.FileField(upload_to='repertoire_images/', null=True, blank=True, verbose_name='Фото')
     age_control = models.PositiveSmallIntegerField(verbose_name='Возрастное ограничение')
     price = models.PositiveIntegerField(verbose_name='Цена')
 
