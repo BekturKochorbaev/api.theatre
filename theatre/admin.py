@@ -2,7 +2,7 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin, TranslationTabularInline
 
 from .models import EventCategory, EventDate, Event, Play, TheatreDescription, TheatreImage, AboutTheatre, TeamCategory, \
-    Team, GalleryCategory, Gallery, Repertoire, Contact, GalleryImage
+    Team, GalleryCategory, Gallery, Repertoire, Contact, GalleryImage, TeamPlay
 from .translation import MediaAdminMixin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -49,8 +49,14 @@ class TeamCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
+class TeamPlayInline(admin.TabularInline):
+    model = TeamPlay
+    extra = 1
+
+
 @admin.register(Team)
 class TeamAdmin(SortableAdminMixin, admin.ModelAdmin):
+    inlines = [TeamPlayInline]
     list_display = ('name', 'position', 'category')
     ordering = ['order']
 

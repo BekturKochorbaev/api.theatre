@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import EventCategoryListView, EventListView, PlayListView, AboutTheatreListView, \
     TeamListView, GalleryListView, RepertoireListView, ContactListView, EventDetailView, PlayDetailView, \
-    TeamCategoryListView, GalleryCategoryListView
+    TeamCategoryListView, GalleryCategoryListView, TeamDetailView
 
 urlpatterns = [
     path('event-category/', EventCategoryListView.as_view(), name='event-category-list'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('about-theatre/', AboutTheatreListView.as_view(), name='about-theatre-list'),
     path('team-category/', TeamCategoryListView.as_view(), name='team-list'),
     path('team/', TeamListView.as_view(), name='team-list'),
+    path('team/<int:pk>/', TeamDetailView.as_view(), name='team-detail'),
     path('gallery-category/', GalleryCategoryListView.as_view(), name='gallery-list'),
     path('gallery/', GalleryListView.as_view(), name='gallery-list'),
     path('repertoire/', RepertoireListView.as_view(), name='repertoire-list'),

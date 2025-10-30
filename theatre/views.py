@@ -7,9 +7,9 @@ from .models import (
 )
 from .serializers import (
     EventCategorySerializer, PlayDetailSerializer, AboutTheatreSerializer,
-    TeamCategorySerializer, TeamSerializer, GallerySerializer,
+    TeamCategorySerializer, TeamListSerializer, GallerySerializer,
     RepertoireSerializer, ContactSerializer, EventDetailSerializer, EventListSerializer, PlayListSerializer,
-    GalleryCategorySerializer
+    GalleryCategorySerializer, TeamDetailSerializer
 )
 
 
@@ -64,9 +64,15 @@ class TeamCategoryListView(generics.ListAPIView):
 class TeamListView(generics.ListAPIView):
     """Запрос для получения списка команды"""
     queryset = Team.objects.all().select_related('category')
-    serializer_class = TeamSerializer
+    serializer_class = TeamListSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = TeamListFilter
+
+
+class TeamDetailView(generics.RetrieveAPIView):
+    """Запрос для получения списка команды (детальная страница)"""
+    queryset = Team.objects.all()
+    serializer_class = TeamDetailSerializer
 
 
 # ---------- GALLERY ----------

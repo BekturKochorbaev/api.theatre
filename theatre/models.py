@@ -39,6 +39,7 @@ class EventDate(models.Model):
 class Play(models.Model):
     title = models.CharField(max_length=500, verbose_name='Название')
     director = models.CharField(max_length=300, verbose_name='Режиссёр')
+    author = models.CharField(max_length=300, verbose_name='Автор')
     genre = models.CharField(max_length=250, verbose_name='Жанр')
     premiere = models.CharField(max_length=250, null=True, blank=True, verbose_name='Премьера')
     time = models.PositiveSmallIntegerField(verbose_name='Продолжительность')
@@ -97,6 +98,8 @@ class Team(models.Model):
     name = models.CharField(max_length=300, verbose_name='ФИО')
     position = models.CharField(max_length=250, verbose_name='Должность')
     image = models.FileField(upload_to='theam_images/', null=True, blank=True, verbose_name='Фото')
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
+    awards = models.TextField(verbose_name='Награды', null=True, blank=True)
     order = models.PositiveIntegerField(default=0, verbose_name='порядок')
 
     class Meta:
@@ -104,6 +107,17 @@ class Team(models.Model):
         verbose_name_plural = verbose_name
         ordering = ['order']
 
+    def __str__(self):
+        return self.name
+
+
+class TeamPlay(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='plays')
+    name = models.CharField(max_length=300, verbose_name='Названия')
+
+    class Meta:
+        verbose_name = "Действован(а) в спектаклях"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.name

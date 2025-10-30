@@ -4,7 +4,7 @@ from .models import (
     Play, AboutTheatre, TheatreDescription, TheatreImage,
     TeamCategory, Team,
     GalleryCategory, Gallery,
-    Repertoire, Contact, GalleryImage
+    Repertoire, Contact, GalleryImage, TeamPlay
 )
 
 
@@ -59,7 +59,7 @@ class PlayListSerializer(serializers.ModelSerializer):
 class PlayDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Play
-        fields = ['id', 'title', 'director', 'genre', 'premiere', 'time', 'address', 'image', 'description']
+        fields = ['id', 'title', 'director', 'author', 'genre', 'premiere', 'time', 'address', 'image', 'description']
 
 
 class TheatreDescriptionSerializer(serializers.ModelSerializer):
@@ -91,13 +91,27 @@ class TeamCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TeamSerializer(serializers.ModelSerializer):
+class TeamListSerializer(serializers.ModelSerializer):
     category = TeamCategorySerializer(read_only=True)
 
     class Meta:
         model = Team
         fields = ['id', 'category', 'name', 'position', 'image', 'order']
 
+
+class TeamPlaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamPlay
+        fields = ['id', 'name']
+
+
+class TeamDetailSerializer(serializers.ModelSerializer):
+    category = TeamCategorySerializer(read_only=True)
+    plays = TeamPlaySerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Team
+        fields = ['id', 'category', 'name', 'position', 'image', 'description', 'awards', 'plays']
 
 # ---------- GALLERY SERIALIZERS ----------
 
