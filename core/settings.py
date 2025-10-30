@@ -141,14 +141,14 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:3002',
-    'http://localhost:3003',
+    'http://localhost:5173',
 ]
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:3002',
-    'http://localhost:3003',
+    'http://localhost:5173',
 
 )
 DEFAULT_FROM_EMAIL = 'Капар Медетбеков атындагы Талас облустук музыкалык драма театры <bekturkochorbaev64@gmail.com>'
