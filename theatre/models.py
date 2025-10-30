@@ -17,6 +17,7 @@ class Event(models.Model):
     category = models.ForeignKey(EventCategory, on_delete=models.CASCADE, related_name='Категория')
     address = models.CharField(max_length=500, null=True, blank=True, verbose_name='Адрес')
     short_address = models.CharField(max_length=500, null=True, blank=True, verbose_name='Короткий Адрес')
+    time = models.CharField(max_length=50, verbose_name='Продолжительность')
     image = models.FileField(upload_to='event_image/', null=True, blank=True, verbose_name='Фото')
     price = models.PositiveIntegerField(verbose_name='Цена')
     age_control = models.PositiveSmallIntegerField(verbose_name='Возрастное ограничение')
