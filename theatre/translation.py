@@ -26,7 +26,7 @@ class EventTranslationOptions(TranslationOptions):
 
 @register(Play)
 class PlayTranslationOptions(TranslationOptions):
-    fields = ('title', 'address')
+    fields = ('title', 'director', 'author', 'genre', 'premiere', 'address', 'description')
 
 
 @register(AboutTheatre)
