@@ -3,13 +3,14 @@ from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import GalleryListFilter, TeamListFilter
 from .models import (
-    EventCategory, Event, Play, AboutTheatre, TeamCategory, Team, Gallery, Repertoire, Contact, GalleryCategory
+    EventCategory, Event, Play, AboutTheatre, TeamCategory, Team, Gallery, Repertoire, Contact, GalleryCategory, News,
+    Vacancy
 )
 from .serializers import (
     EventCategorySerializer, PlayDetailSerializer, AboutTheatreSerializer,
     TeamCategorySerializer, TeamListSerializer, GallerySerializer,
     RepertoireSerializer, ContactSerializer, EventDetailSerializer, EventListSerializer, PlayListSerializer,
-    GalleryCategorySerializer, TeamDetailSerializer
+    GalleryCategorySerializer, TeamDetailSerializer, NewsSerializer, VacancySerializer
 )
 
 
@@ -104,3 +105,17 @@ class ContactListView(generics.ListAPIView):
     """Запрос для получения контактной информации"""
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+
+class NewsListView(generics.ListAPIView):
+    """Запрос для получения Новости"""
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+
+
+class VacancyListView(generics.ListAPIView):
+    """Запрос для получения Ваканции"""
+    queryset = Vacancy.objects.all()
+    serializer_class = VacancySerializer
+
+

@@ -154,6 +154,8 @@ class GalleryImage(models.Model):
 class Repertoire(models.Model):
     title = models.CharField(max_length=500, verbose_name='Название')
     genre = models.CharField(max_length=250, verbose_name='Жанр')
+    season = models.PositiveSmallIntegerField(null=True, blank=True, verbose_name='Сезон')
+    year = models.PositiveSmallIntegerField(null=True, blank=True, verbose_name='Год')
     date = models.DateField(verbose_name='Дата')
     time = models.TimeField(verbose_name='Время')
     image = models.FileField(upload_to='repertoire_images/', null=True, blank=True, verbose_name='Фото')
@@ -175,4 +177,21 @@ class Contact(models.Model):
 
     class Meta:
         verbose_name = "Контакты"
+        verbose_name_plural = verbose_name
+
+
+class News(models.Model):
+    image = models.FileField(upload_to='repertoire_images/', null=True, blank=True, verbose_name='Фото')
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Новости"
+        verbose_name_plural = verbose_name
+
+
+class Vacancy(models.Model):
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Ваканция"
         verbose_name_plural = verbose_name

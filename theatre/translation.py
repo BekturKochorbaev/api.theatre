@@ -1,5 +1,6 @@
 from modeltranslation.translator import TranslationOptions, register
-from theatre.models import EventCategory, Event, Play, AboutTheatre, TheatreDescription, Repertoire
+from theatre.models import EventCategory, Event, Play, AboutTheatre, TheatreDescription, Repertoire, TeamCategory, Team, \
+    TeamPlay, News, Vacancy
 
 
 class MediaAdminMixin:
@@ -39,8 +40,33 @@ class TheatreDescriptionTranslationOptions(TranslationOptions):
     fields = ('description',)
 
 
+@register(TeamCategory)
+class TeamCategoryTranslationOptions(TranslationOptions):
+    fields = ('name',)
+
+
+@register(Team)
+class TeamTranslationOptions(TranslationOptions):
+    fields = ('name', 'position', 'description', 'awards')
+
+
+@register(TeamPlay)
+class TeamPlayTranslationOptions(TranslationOptions):
+    fields = ('name',)
+
+
 @register(Repertoire)
 class RepertoireTranslationOptions(TranslationOptions):
     fields = ('title', 'genre')
+
+
+@register(News)
+class NewsTranslationOptions(TranslationOptions):
+    fields = ('description',)
+
+
+@register(Vacancy)
+class VacancyTranslationOptions(TranslationOptions):
+    fields = ('description',)
 
 

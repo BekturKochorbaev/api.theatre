@@ -4,7 +4,7 @@ from .models import (
     Play, AboutTheatre, TheatreDescription, TheatreImage,
     TeamCategory, Team,
     GalleryCategory, Gallery,
-    Repertoire, Contact, GalleryImage, TeamPlay
+    Repertoire, Contact, GalleryImage, TeamPlay, News, Vacancy
 )
 
 
@@ -88,7 +88,7 @@ class AboutTheatreSerializer(serializers.ModelSerializer):
 class TeamCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = TeamCategory
-        fields = '__all__'
+        fields = ['id', 'name']
 
 
 class TeamListSerializer(serializers.ModelSerializer):
@@ -114,6 +114,7 @@ class TeamDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'category', 'name', 'position', 'image', 'description', 'awards', 'plays']
 
 # ---------- GALLERY SERIALIZERS ----------
+
 
 class GalleryCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -141,7 +142,7 @@ class GallerySerializer(serializers.ModelSerializer):
 class RepertoireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Repertoire
-        fields = ['id', 'title', 'genre', 'date', 'time', 'image', 'age_control', 'price']
+        fields = ['id', 'title', 'genre', 'season', 'year', 'date', 'time', 'image', 'age_control', 'price']
 
 
 # ---------- CONTACT SERIALIZER ----------
@@ -150,3 +151,17 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
+
+
+class NewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+        fields = ['id', 'image', 'description']
+
+
+class VacancySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vacancy
+        fields = ['id', 'description']
+
+

@@ -2,7 +2,7 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TabbedTranslationAdmin, TranslationTabularInline
 
 from .models import EventCategory, EventDate, Event, Play, TheatreDescription, TheatreImage, AboutTheatre, TeamCategory, \
-    Team, GalleryCategory, Gallery, Repertoire, Contact, GalleryImage, TeamPlay
+    Team, GalleryCategory, Gallery, Repertoire, Contact, GalleryImage, TeamPlay, News, Vacancy
 from .translation import MediaAdminMixin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -45,19 +45,20 @@ class AboutTheatreAdmin(TranslationAdmin, MediaAdminMixin):
 
 
 @admin.register(TeamCategory)
-class TeamCategoryAdmin(admin.ModelAdmin):
+class TeamCategoryAdmin(TranslationAdmin, MediaAdminMixin):
     list_display = ('name',)
 
 
-class TeamPlayInline(admin.TabularInline):
+class TeamPlayInline(TranslationTabularInline, MediaAdminMixin):
     model = TeamPlay
     extra = 1
 
 
 @admin.register(Team)
-class TeamAdmin(SortableAdminMixin, admin.ModelAdmin):
+class TeamAdmin(SortableAdminMixin, TranslationAdmin, MediaAdminMixin):
     inlines = [TeamPlayInline]
     list_display = ('name', 'position', 'category')
+    exclude = ('order',)
     ordering = ['order']
 
 
@@ -77,16 +78,24 @@ class GalleryAdmin(admin.ModelAdmin):
     list_display = ('category',)
 
 
-
 @admin.register(Repertoire)
 class RepertoireAdmin(TranslationAdmin, MediaAdminMixin):
     list_display = ('title', 'genre')
 
 
 @admin.register(Contact)
-class RepertoireAdmin(admin.ModelAdmin):
+class ContactAdmin(admin.ModelAdmin):
     list_display = ('address', 'number', 'whatsapp', 'instagram')
 
+
+@admin.register(News)
+class NewsAdmin(TranslationAdmin, MediaAdminMixin):
+    list_display = ('description', )
+
+
+@admin.register(Vacancy)
+class NewsAdmin(TranslationAdmin, MediaAdminMixin):
+    list_display = ('description', )
 
 
 
